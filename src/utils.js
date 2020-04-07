@@ -1,8 +1,114 @@
+import * as THREE from "three"
+import React from "react"
+import lerp from "lerp"
+
+export function line(event, hoveredItem,font){
+  //If hover event is fired 
+  if(event.eventObject){
+
+  let origin // Sets the origin point for the line
+  let secondPoint // Sets the elbow point of the line
+  let thirdPoint // Sets the final point of the line
+  let objectRot = event.eventObject.quaternion._w //Gets the object rotation
+  let message // Defines the text to show
+  let textPosX  // Defines the text X position
+  let textPosY = 0 // Defines the text Y position
+
+  //Depending on the "hoveredItem" and it's rotation or "objectRot", defines the line and text propierties
+  switch(hoveredItem) {
+    case "ux":
+      origin = {x: 0,y: 0.5} 
+      secondPoint = Math.abs(objectRot) > 0.7 ? {x: 1,y: 1.75} : {x: -1,y: 1.75}
+      thirdPoint = Math.abs(objectRot) > 0.7 ? {x: 1.5,y: 1.75} : {x: -1.5,y: 1.75}
+      textPosX = Math.abs(objectRot) > 0.7 ? 0.1 : -1.25
+      textPosY = - 0.075
+      message = "UX / UI"
+      break;
+    case "frontend":
+      origin = {x: 0,y: 0.5} 
+      secondPoint = Math.abs(objectRot) > 0.7  ? {x: -1,y: 1.75} : {x: 1,y: 1.75}
+      thirdPoint = Math.abs(objectRot) > 0.7  ? {x: -1.5,y: 1.75} : {x: 1.5,y: 1.75}
+      textPosX = Math.abs(objectRot) > 0.7 ? -1.5 : 0.1 
+      message = "FRONTEND\nDEVELOPER"
+      break;
+    case "graphic":
+      origin = {x: 0,y: 0} 
+      secondPoint = Math.abs(objectRot) > 0.7  ? {x: -1.75,y: -0.5} : {x: 1.75,y: -0.5}
+      thirdPoint = Math.abs(objectRot) > 0.7  ? {x: -2.25,y: -0.5} : {x: 2.25,y: -0.5}
+      textPosX = Math.abs(objectRot) > 0.7 ? -1.5 : 0.1
+      message = "GRAPHIC\nDESIGNER"
+    break;
+    case "3d":
+      origin = {x: 0,y: 0} 
+      secondPoint = Math.abs(objectRot) > 0.7  ? {x: 1.75,y: -0.5} : {x: -1.75,y: -0.5}
+      thirdPoint = Math.abs(objectRot) > 0.7  ? {x: 2.25,y: -0.5} : {x: -2.25,y: -0.5}
+      textPosX = Math.abs(objectRot) > 0.7 ? 0.1  : -1.6
+      textPosY = - 0.075
+      message = "3D ARTIST"
+    break;
+    case "aboutMe":
+      origin = {x: 0,y: -0.5} 
+      secondPoint = Math.abs(objectRot) > 0.5 ? {x: 1,y: -1.5} : {x: -1,y: -1.5}
+      thirdPoint = Math.abs(objectRot) > 0.5 ? {x: 1.5,y: -1.5} : {x: -1.5,y: -1.5}
+      textPosX = Math.abs(objectRot) > 0.5 ? 0.1  : -1.5
+      textPosY = - 0.075
+      message = "ABOUT ME"
+    break;
+    default:
+    break;      
+  } 
+
+  //Creates a new path
+  let path = new THREE.Path();
+
+  //Defines the line path
+  path.currentPoint.x = origin.x
+  path.currentPoint.y = origin.y
+  path.lineTo(secondPoint.x, secondPoint.y)
+  path.lineTo(thirdPoint.x, thirdPoint.y)
+  let points = path.getPoints()
+
+  //Sets the geometry and material for the line
+  let geometry = new THREE.BufferGeometry().setFromPoints( points )
+
+  //Creates the geometry for the text
+  let font_shapes = font.generateShapes( message, 0.2 );
+  let font_geometry = new THREE.ShapeBufferGeometry( font_shapes );
+
+  //Creates the material
+  let material = new THREE.LineBasicMaterial( { color: 0xffffff } )
+
+  return (
+    <group scale={[0.5,0.5,0.5]}>    
+      <line geometry={geometry} material={material}></line>
+      <mesh geometry={font_geometry} material={material} position={ [thirdPoint.x + textPosX, thirdPoint.y+textPosY, 0]}></mesh>
+    </group>
+  )
+ }
+}
+
+export function moveHead(mouse, head) {
+  //Separate the eyes objects in an array to isolate their movement
+  let eyes = [head.children[0],head.children[1],head.children[2],head.children[3]]
+  //Sets the movement for the head group
+  let degrees = getMouseDegrees(mouse.x, mouse.y, 20)
+  head.rotation.xD = lerp(head.rotation.xD || 0, degrees.y, 0.1)
+  head.rotation.yD = lerp(head.rotation.yD || 0, degrees.x, 0.1)
+  head.rotation.x = THREE.Math.degToRad(head.rotation.xD)
+  head.rotation.y = THREE.Math.degToRad(head.rotation.yD)
+  //Sets the movement for the eyes
+  eyes.forEach((item) => {
+      item.rotation.xD = lerp(item.rotation.xD || 0, degrees.y, 0.2)
+      item.rotation.yD = lerp(item.rotation.yD || 0, degrees.x, 0.2)
+      item.rotation.x = THREE.Math.degToRad(item.rotation.xD)
+      item.rotation.y = THREE.Math.degToRad(item.rotation.yD)
+  })
+}
+
 export function getMousePos(e) 
 {
   return { x: e.clientX, y: e.clientY }
 }
-
   
 export function getMouseDegrees(x, y, degreeLimit) 
 {

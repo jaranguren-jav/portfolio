@@ -1,14 +1,30 @@
 .App {
     height:100vh;
     width:100vw;
-    cursor:none;
-    overflow: hidden;
+}
+
+.closeAll{
+    z-index: 5;
+    color:rgba(255, 255, 255, 0.5);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    font-size: 14px;
+    position: absolute;
+    width: 100vw;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px 0;
+}
+
+.closeAll:hover{
+    color:rgba(255, 255, 255, 1);
 }
 
 canvas {
     height:100vh;
     width:100vw;
     background-color: black;
+    cursor:none;
 }
 
 .cursor_small {

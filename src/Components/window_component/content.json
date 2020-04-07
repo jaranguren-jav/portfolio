@@ -1,0 +1,17 @@
+{
+    "front_end" : { 
+                    "window_title":"Front-end developer"
+                    },
+    "ux_ui" : { 
+                    "window_title":"UX / UI"
+                    },
+    "3d" : { 
+                    "window_title":"3d Artist"
+                    },
+    "graphic" : { 
+                    "window_title":"Graphic design"
+                    },
+    "about" : { 
+                    "window_title":"About Me"
+                    }
+}
