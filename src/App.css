@@ -3,6 +3,39 @@
     width:100vw;
 }
 
+.presentation{
+    position: absolute;
+    z-index: 2;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    color:rgb(136, 255, 255);
+    pointer-events: none;
+    left: 2vw;
+    bottom: 5vh;
+}
+
+.first_line{
+    font-size: 40px;
+    animation-name: glitch ;
+    animation-duration: 0.1s;
+    animation-iteration-count: infinite;
+    transition: linear;
+    border: 5px double rgb(136, 255, 255);
+    padding: 5px 10px;
+}
+
+.second_line{
+    font-size: 33px;
+    text-align: justify;
+    animation-name: glitch ;
+    animation-duration: 0.1s;
+    animation-iteration-count: infinite;
+    transition: linear;
+    border: 5px double rgb(136, 255, 255);
+    padding: 5px 10px;
+}
+
+
 .closeAll{
     z-index: 5;
     color:rgba(255, 255, 255, 0.5);
@@ -35,10 +68,77 @@ canvas {
     stroke:rgb(150,150,150);
 }
 
+.brainHover {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    animation-name: reveal;
+    animation-duration: 1s;
+    transition: linear;
+}
+
+.brainHover_cross{
+    background-image: url("/assets/cursor_cross.svg");
+    background-size: cover;
+    width:75px;
+    height:75px;
+    margin-right: 10px;
+}
+
+.brainHover_title{
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    font-size: 50px;
+    white-space: nowrap;
+    color: white;
+    padding: 5px 30px;
+    overflow: hidden;
+    background-color: black;
+    margin: 0;
+    animation-name: glitch ;
+    animation-duration: 0.1s;
+    animation-iteration-count: infinite;
+    transition: linear;
+}
+
+@keyframes glitch {
+    0%{
+      text-shadow: 3.5px -2.5px rgba(0, 0, 255, 0.75), 1px 1px rgba(0, 255, 0, 0.75), -1px 2px rgba(255, 0, 0, 0.75);
+    }
+    100% {
+      text-shadow: 1.5px -1.5px rgba(0, 0, 255, 0.75), -1px 1px rgba(0, 255, 0, 0.75), -3px 2px rgba(255, 0, 0, 0.75);
+    }
+  }
+
+
+@keyframes reveal {
+    0%{
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
 .cursor_clicked {
     animation-name: click;
     animation-duration: 0.4s;
     transition: ease-in;
+}
+
+.access_granted{
+    position:absolute;
+    background-color: black;
+    color:rgb(127, 195, 204);
+    border: 2px rgb(127, 195, 204) solid;
+    padding: 10px 50px;
+    font-size: xxx-large;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    z-index: 2;
 }
 
 @keyframes click {

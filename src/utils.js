@@ -2,6 +2,24 @@ import * as THREE from "three"
 import React from "react"
 import lerp from "lerp"
 
+export function access_granted(font){
+  //Creates the geometry for the text
+  let font_shapes = font.generateShapes( "ACCESS GRANTED", 0.2 );
+  let font_geometry = new THREE.ShapeBufferGeometry( font_shapes );
+  let plane_geometry = new THREE.PlaneBufferGeometry( 3, 0.5, 1 )
+
+  //Creates the material
+  let font_material = new THREE.LineBasicMaterial( { color: 0xffffff } )
+  let plane_material = new THREE.MeshBasicMaterial( { color: 0x000000 } )
+
+  return (
+    <group scale={[0.5,0.5,0.5]} position={ [-0.55, 0, 1.5]}>    
+      <mesh geometry={font_geometry} material={font_material}></mesh>
+      <mesh geometry={plane_geometry} material={plane_material} position={ [1, 0.1, -0.05]}></mesh>
+    </group>
+  )
+}
+
 export function line(event, hoveredItem,font){
   //If hover event is fired 
   if(event.eventObject){

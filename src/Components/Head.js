@@ -2,7 +2,7 @@ import * as THREE from "three"
 import React, { Suspense, useEffect, useRef, useState } from "react"
 import { useLoader, useFrame } from "react-three-fiber"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
-import { moveHead, line } from "../utils"
+import { moveHead, access_granted } from "../utils"
 import Loading from "./Loading"
 import Effects from "./Effects"
 
@@ -15,6 +15,7 @@ export default function Head({ mouse, ...props }) {
     let wireframe_alpha = useLoader(THREE.TextureLoader, "/assets/wireframe_alpha.png")
     let head_alpha = useLoader(THREE.TextureLoader, "/assets/head_alpha.png")
     const [animationGlitch, setAnimatioGlitch] = useState(false);
+    const [accessGranted, setAccessGranted] = useState(false);
 
     //Materials
 
@@ -22,7 +23,7 @@ export default function Head({ mouse, ...props }) {
     props.cutlineHovered  ? cutline_material.setValues({opacity: 1}) : cutline_material.setValues({opacity: 0.05})
     const invisible_material = new THREE.MeshLambertMaterial({color: 0x000000, transparent: true, opacity: 0});
     const brain_hovered = new THREE.MeshLambertMaterial({color:0x8293a,emissive:0xa6edf2,wireframe:true,})
-    const brain_mat = new THREE.MeshBasicMaterial({color:0x6cbbe2,wireframe:true})
+    const brain_mat = new THREE.MeshBasicMaterial({color:0x39898f,wireframe:true})
     const brain_int_mat = new THREE.MeshLambertMaterial({color: 0x3149, transparent: true, opacity: 0.75});
     nodes["head_mesh"].material.setValues({transparent: true,alphaMap:head_alpha})
     let head_mat = nodes["head_mesh"].material
@@ -35,10 +36,12 @@ export default function Head({ mouse, ...props }) {
       //If "Brain Mode" activated, rotate the Brain
       if(props.brainMode){
         setAnimatioGlitch(false)
+        setAccessGranted(false)
         if(props.brainHover === "no_hover"){group.current.children.map(item => item.rotation.y = item.rotation.y -= 0.015)} 
       //Else if the cutline is clicked make the cutline dissapear and activate the main animation 
       } else if(props.isHeadCut){
         setAnimatioGlitch(true)
+        setAccessGranted(true)
         group.current.children[4].visible = false;
         group.current.children[5].visible = true;
         group.current.children[6].visible = true;
@@ -50,6 +53,7 @@ export default function Head({ mouse, ...props }) {
         group.current.children[12].visible = true;
         group.current.children[13].visible = true;
         group.current.children[14].visible = true;
+        group.current.children[15].visible = true;
         mixer.update(delta)
       //Else show everything and keep the moving head animation
       } else {
@@ -121,34 +125,34 @@ export default function Head({ mouse, ...props }) {
               onPointerOut={e => {props.setCutlineHovered(e);e.stopPropagation()}}
               onClick={props.setCutHead}
           />: ""}
-          <mesh visible geometry={nodes["brain_ux"].geometry} material={props.brainHover === "ux" ? brain_hovered : brain_mat} position={nodes["brain_ux"].position}
-            onPointerMove={e => {props.setBrainHover(e, "ux");e.stopPropagation()}} 
+          <mesh visible geometry={nodes["brain_ux"].geometry} material={props.brainHover === "UX / UI" ? brain_hovered : brain_mat} position={nodes["brain_ux"].position}
+            onPointerMove={e => {if(props.brainMode) props.setBrainHover(e, "UX / UI");e.stopPropagation()}} 
             onPointerOut={e => {props.setBrainHover(e,"no_hover");e.stopPropagation()}}
             onClick={e=>{if(props.brainMode) props.newWindow("ux_ui");e.stopPropagation()}}
             />              
-          <mesh visible geometry={nodes["brain_frontend"].geometry} material={props.brainHover === "frontend" ? brain_hovered : brain_mat} position={nodes["brain_frontend"].position}
-            onPointerMove={e => {props.setBrainHover(e,"frontend");e.stopPropagation()}}
+          <mesh visible geometry={nodes["brain_frontend"].geometry} material={props.brainHover === "FRONT-END DEVELOPER" ? brain_hovered : brain_mat} position={nodes["brain_frontend"].position}
+            onPointerMove={e => {if(props.brainMode)  props.setBrainHover(e,"FRONT-END DEVELOPER");e.stopPropagation()}}
             onPointerOut={e => {props.setBrainHover(e,"no_hover");e.stopPropagation()}}
             onClick={e=>{if(props.brainMode) props.newWindow("front_end");e.stopPropagation()}}
             />   
-          <mesh visible geometry={nodes["brain_graphic"].geometry} material={props.brainHover === "graphic" ? brain_hovered : brain_mat} position={nodes["brain_graphic"].position}
-            onPointerMove={e => {props.setBrainHover(e,"graphic");e.stopPropagation()}}
+          <mesh visible geometry={nodes["brain_graphic"].geometry} material={props.brainHover === "GRAPHIC DESIGN" ? brain_hovered : brain_mat} position={nodes["brain_graphic"].position}
+            onPointerMove={e => {if(props.brainMode) props.setBrainHover(e,"GRAPHIC DESIGN");e.stopPropagation()}}
             onPointerOut={e => {props.setBrainHover(e,"no_hover");e.stopPropagation()}}
             onClick={e=>{if(props.brainMode) props.newWindow("graphic");e.stopPropagation()}}
             />   
-          <mesh visible geometry={nodes["brain_3d"].geometry} material={props.brainHover === "3d" ? brain_hovered : brain_mat} position={nodes["brain_3d"].position}
-            onPointerMove={e => {props.setBrainHover(e,"3d");e.stopPropagation()}}
+          <mesh visible geometry={nodes["brain_3d"].geometry} material={props.brainHover === "3D ARTIST" ? brain_hovered : brain_mat} position={nodes["brain_3d"].position}
+            onPointerMove={e => {if(props.brainMode) props.setBrainHover(e,"3D ARTIST");e.stopPropagation()}}
             onPointerOut={e => {props.setBrainHover(e, "no_hover");e.stopPropagation()}}
             onClick={e=>{if(props.brainMode) props.newWindow("3d");e.stopPropagation()}}
             />   
-          <mesh visible geometry={nodes["brain_aboutMe"].geometry} material={props.brainHover === "aboutMe" ? brain_hovered : brain_mat} position={nodes["brain_aboutMe"].position}
-            onPointerMove={e => {props.setBrainHover(e,"aboutMe");e.stopPropagation()}}
+          <mesh visible geometry={nodes["brain_aboutMe"].geometry} material={props.brainHover === "ABOUT ME" ? brain_hovered : brain_mat} position={nodes["brain_aboutMe"].position}
+            onPointerMove={e => {if(props.brainMode) props.setBrainHover(e,"ABOUT ME");e.stopPropagation()}}
             onPointerOut={e => {props.setBrainHover(e,"no_hover");e.stopPropagation()}}
             onClick={e=>{if(props.brainMode) props.newWindow("about");e.stopPropagation()}}
             />   
           <mesh visible geometry={nodes["brain_interior"].geometry} material={brain_int_mat} position={nodes["brain_interior"].position}/>
         </Suspense>
-        {props.brainHover !== "no_hover" && props.brainMode ? line(props.brainHoverEvent,props.brainHover,font) : ""}
+        {accessGranted ? access_granted(font) : ""}
         <Effects animationGlitch={animationGlitch} glitchIntensity={props.cutlineHovered  ? 0.005 : 0.05} bloomLvl={0.4}/> 
       </group>
     )

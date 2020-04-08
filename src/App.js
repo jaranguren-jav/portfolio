@@ -1,5 +1,5 @@
 import React, { Suspense, Component } from 'react'
-import { Canvas } from 'react-three-fiber'
+import { Canvas, Dom } from 'react-three-fiber'
 import Head from "./Components/Head"
 import Loading from "./Components/Loading"
 import Cursor from "./Components/Cursor"
@@ -57,13 +57,18 @@ class App extends Component {
   newWindow(type){
     let array = this.state.windows
     array.push(type)
+    this.setState({window_active:this.state.windows.length - 1}) 
     this.setState({windows:array}) 
   }
 
   render() {
     return (
       <div className="App">
-          {this.state.mouseOut ? "" : <Cursor mouse={this.state.mouse} clicked={this.state.clicked} scissorCursor={this.state.cutlineHovered}/>}
+          <div className="presentation">
+            <div className="first_line">HI! I'M <span style={{color:"rgb(207, 255, 255)"}}>JULEN ARANGUREN</span></div>
+            <div className="second_line">AND THIS IS MY <i style={{color:"rgb(207, 255, 255)"}}>DIGITAL SELF</i></div>
+          </div>
+          {this.state.mouseOut ? "" : <Cursor mouse={this.state.mouse} clicked={this.state.clicked} scissorCursor={this.state.cutlineHovered} brainHover={this.state.brainHover} brainMode={this.state.brainMode}/>}
           {this.state.windows.length > 0 ? <div className="closeAll" onClick={e => this.setState({windows:[]}) }>Close All</div> : ""}
           {this.state.windows.length > 0 ? this.state.windows.map((type, index) => <Window key={index} type={type} number={index} closeWindow={this.closeWindow} setActive={number => this.setState({window_active:number})} isActive={this.state.window_active}/>) : ""}
             <Canvas shadowMap 

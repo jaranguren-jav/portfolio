@@ -3,6 +3,14 @@ import '../App.css';
 
 export default function Cursor(props) {
     return (
+        props.brainHover !== "no_hover" && props.brainMode?
+        //Brain Hover
+        <div className="brainHover" style={{top: props.mouse.y - 50, left: props.mouse.x - 50}}>
+          <div className="brainHover_cross"></div>
+          <h1 className="brainHover_title">{props.brainHover}</h1>
+          <div className="brainHover_preview"></div>
+        </div>
+        :
         !props.scissorCursor ?
         //Normal Cursor
         <svg className={props.clicked ? "cursor_small" : "cursor_small cursor_clicked"} style={{top: props.mouse.y-30, left: props.mouse.x-30}} width={"60"} height={"60"} viewBox={"0 0 62 62"}  xmlns="http://www.w3.org/2000/svg">

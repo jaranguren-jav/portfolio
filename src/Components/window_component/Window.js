@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState , useEffect} from "react"
 import Draggable from 'react-draggable';
 import { Resizable } from "re-resizable";
 import "./Window.css"
@@ -8,11 +8,18 @@ import {Math as _Math} from "three"
 export default function Window({ number, type, isActive, ...props }){
     const content = data.default[type]
     let active = isActive === number ? true : false
+    let [initialPositions, setPositions] = useState({x: 0, y: 0}) 
+
+    useEffect(() => {
+        setPositions({x: window.innerWidth/(2.9 + _Math.randFloat(-1, 1)), y: window.innerHeight/(3.5 + _Math.randFloat(-1, 1))})
+      }, []);
+
     return (
-    <Draggable handle=".bar" defaultPosition={{x: window.innerWidth/(2.9 + _Math.randFloat(-1, 1)), y: window.innerHeight/(3.5 + _Math.randFloat(-1, 1))}}>
+    <Draggable handle=".bar" defaultPosition={{x:initialPositions.x, y:initialPositions.y}}>
         <Resizable
             onClick={e => props.setActive(number)}
-            style={{position:"absolute",zIndex: active ? 4 : 3,display:"flex",flexDirection: "column"}}
+            className={"window"}
+            style={{position: "absolute",zIndex: active ? 4 : 3, left:initialPositions.x, top:initialPositions.y}}
             defaultSize={{
             width: window.innerWidth*40/100,
             height: window.innerHeight*50/100
