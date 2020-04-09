@@ -13,5 +13,10 @@
                     },
     "about" : { 
                     "window_title":"About Me"
+                    },
+    "contact" : { 
+                    "window_title":"Contact Me!!",
+                    "url":"//gmail.us19.list-manage.com/subscribe/post?u=65f5ae85369df580b7b06fdaf&id=6aafe2f1c6"
                     }
 }
+

@@ -68,6 +68,10 @@ class App extends Component {
             <div className="first_line">HI! I'M <span style={{color:"rgb(207, 255, 255)"}}>JULEN ARANGUREN</span></div>
             <div className="second_line">AND THIS IS MY <i style={{color:"rgb(207, 255, 255)"}}>DIGITAL SELF</i></div>
           </div>
+          <div className="links">
+            <a href={"https://www.linkedin.com/in/julen-aranguren-a28a8611a"} target="_blank" className="linkedIn"></a>
+            <div className="mailTo" onClick={e=> this.newWindow("contact")}></div>
+          </div>
           {this.state.mouseOut ? "" : <Cursor mouse={this.state.mouse} clicked={this.state.clicked} scissorCursor={this.state.cutlineHovered} brainHover={this.state.brainHover} brainMode={this.state.brainMode}/>}
           {this.state.windows.length > 0 ? <div className="closeAll" onClick={e => this.setState({windows:[]}) }>Close All</div> : ""}
           {this.state.windows.length > 0 ? this.state.windows.map((type, index) => <Window key={index} type={type} number={index} closeWindow={this.closeWindow} setActive={number => this.setState({window_active:number})} isActive={this.state.window_active}/>) : ""}

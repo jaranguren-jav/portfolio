@@ -3,6 +3,8 @@
     height: 100%;
     width: 100%;
     cursor: url(/assets/window_cursors/cursor_normal.cur), auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .bar{
@@ -67,3 +69,92 @@
         transform:scale(1);
     }
   }
+
+  .customForm{
+      display: flex;
+      flex-direction: column;
+      font-family: 'Roboto Mono', monospace;
+      margin: 15px;
+      height: 100%;
+  }
+
+  input{
+    font-family: 'Roboto Mono', monospace;
+    color: white;
+    border: 3px double rgb(136, 255, 255);
+    padding: 5px 10px;
+    background-color: rgba(136, 255, 255,0.5);
+    font-size: 18px;
+    margin-bottom: 10px;
+    height: 5%;
+  }
+
+  input::placeholder{
+      color:white
+  }
+
+  button{
+    font-family: 'Roboto Mono', monospace;
+    background-color: rgb(136, 255, 255);
+    color:rgb(42, 94, 94);
+    font-weight: 500;
+    font-size: 18px;
+    padding: 5px 20px;
+    width: fit-content;
+    border: 5px outset rgb(184, 255, 255);
+    margin-top: 15px;
+    height: 10%;
+    min-height:45px;
+  }
+
+  button:hover{
+    color:white;
+  }
+
+  .message{
+    font-family: 'Roboto Mono', monospace;
+    color: white;
+    border: 3px double rgb(136, 255, 255);
+    padding: 5px 10px;
+    background-color: rgba(136, 255, 255,0.5);
+    height: 85%;
+  }
+
+  .message::placeholder{
+    color:white
+}
+
+.bottomArea{
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+}
+
+.sending{
+    height: 100;
+    font-family: 'Roboto Mono', monospace;
+    color: rgb(136, 255, 255);
+    font-size: 16px;
+    font-weight: 500;
+    align-self: flex-end;
+    padding: 0 10px;
+}
+
+.error{
+    font-family: 'Roboto Mono', monospace;
+    color: rgb(255, 0, 0);
+    font-size: 16px;
+    font-weight: 500;
+    align-self: flex-end;
+    padding: 0 10px;
+}
+
+.success{
+    font-family: 'Roboto Mono', monospace;
+    color: rgb(9, 255, 0);
+    font-size: 16px;
+    font-weight: 500;
+    align-self: flex-end;
+    padding: 0 10px;
+}
+
