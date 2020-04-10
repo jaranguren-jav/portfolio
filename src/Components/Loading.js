@@ -6,7 +6,7 @@ import Effects from "./Effects"
 //Helper variable
 let direction = false
 
-export default function Loading(props) {
+export default function Loading(scale, ...props) {
   //Box reference
   const box = useRef()
   //Geometry
@@ -26,11 +26,11 @@ export default function Loading(props) {
       direction = false
     }
   })
-  
+
   return ( 
-    <group>  
+    <group scale={scale.scale === "small" ? [0.5,0.5,0.5] : [1,1,1]}>  
       <mesh geometry={container_geometry} material={ material_container} ></mesh>
-      <mesh ref={box}  geometry={box_geometry} material={material}></mesh>
+      <mesh ref={box}  geometry={box_geometry} material={material} ></mesh>
       <Effects animationGlitch={true} glitchIntensity={0.025} bloomLvl={0.75}/>
     </group>
   )

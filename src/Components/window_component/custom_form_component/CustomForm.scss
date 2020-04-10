@@ -1,0 +1,66 @@
+@import '../../../App.scss';
+
+@mixin message($color){
+    font-family: 'Roboto Mono', monospace;
+    color: $color;
+    font-size: 16px;
+    font-weight: 500;
+    align-self: flex-end;
+    padding: 0 10px;
+}
+
+@mixin input_box{
+    @include Font_Regular(18px, white);
+    @include Border($BrightGreen);
+    padding: 5px 10px;
+    background-color: rgba(136, 255, 255,0.5);
+}
+
+.customForm{
+
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto Mono', monospace;
+    margin: 15px;
+    height: 100%;
+
+    input{
+        @include input_box;
+        margin-bottom: 10px;
+        height: 5%;
+    }
+    textArea{
+        @include input_box;
+        height: 85%;
+    }
+    div{
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        button{
+            @include Font_Bold(18px,rgb(42, 94, 94));
+            background-color: $BrightGreen;
+            padding: 5px 20px;
+            width: fit-content;
+            border: 5px outset rgb(184, 255, 255);
+            margin-top: 15px;
+            height: 10%;
+            min-height:45px;
+
+            &:hover{
+                color:white;
+            }
+        }
+        .submit{
+            @include message($BrightGreen)
+        }
+        .error{
+            @include message($R)
+        }
+        .success{
+            @include message($G)
+        }
+    }
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import "./CustomForm.scss"
 
 
 export default function CustomForm({ status, message, onValidated }) {
@@ -9,7 +10,7 @@ export default function CustomForm({ status, message, onValidated }) {
         email.value.indexOf("@") > -1 &&
         onValidated({
             EMAIL: email.value,
-            TEXT: message_text.value
+            MESSAGE: message_text.value
         });
 
     return (
@@ -18,15 +19,17 @@ export default function CustomForm({ status, message, onValidated }) {
                 ref={node => (email = node)}
                 type="email"
                 placeholder="Your email"
+                value="jaranguren.jav@gmail.com"
             />
             <br />
-            <textarea className="message"              
+            <textarea             
                 ref={node => (message_text = node)}
                 type="text"
                 placeholder="Write me a nice letter, I like talking to humans from time to time!"
+                value="Hola!"
             />
             <br />
-            <div className="bottomArea">
+            <div>
                 <button onClick={submit}>SEND</button>
                 {status === "sending" && <div className="sending">Your message is sending now...</div>}
                 {status === "error" && <div className="error">{message}</div>}

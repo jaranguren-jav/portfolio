@@ -1,0 +1,107 @@
+@import '../../App.scss';
+
+@mixin cursor_position{
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.cursor{
+
+  @include cursor_position;
+
+  &_small{
+    fill:none;
+    stroke:rgb(150,150,150);
+  }
+
+  &_clicked{
+    animation-name: click;
+    animation-duration: 0.4s;
+    transition: ease-in;
+  }
+
+  &_scissor{
+    fill:#EFFFFF;
+  }
+
+  &_brainHover{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    animation-name: reveal;
+    animation-duration: 1s;
+    transition: linear;
+
+    &_cross{
+      background-image: url("/assets/cursor_cross.svg");
+      background-size: cover;
+      margin-right: 10px;
+      width:75px;
+      height:75px;
+    }
+
+    &_title{
+
+      @include Font_Bold(50px,white);
+      @include text-glich;
+
+      white-space: nowrap;
+      padding: 5px 30px;
+      overflow: hidden;
+      background-color: black;
+      margin: 0;
+    }
+  }
+}
+
+@keyframes reveal {
+  0%{
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+  
+@keyframes click {
+  0%  {
+      fill:rgba(255,255,255,0.15);
+      transform:scale(1);
+  }
+  50%  {
+      transform:scale(0.75);
+  }
+  100% {
+      fill:rgba(255,255,255,0);
+      transform:scale(1);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .cursor_brainHover{
+
+    &_cross{
+      width:45px;
+      height:45px;
+      background-position: center;
+    }
+    
+    &_title{
+    font-size: calc(30px + 7 * ((100vw - 320px) / 680));
+    }
+  }
+}
+@media screen and (max-width: 768px) and (min-width: 481px)  {
+  .cursor_brainHover{
+
+    &_cross{
+      width:45px;
+      height:45px;
+    }
+    
+    &_title{
+      font-size: calc(30px + 7 * ((100vw - 768px) / 481));
+    }
+  }
+} 
