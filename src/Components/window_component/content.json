@@ -1,18 +1,99 @@
 {
     "front_end" : { 
-                    "window_title":"Front-end developer"
+                    "window_title":"Front-end developer",
+                    "summary": {"__html": "I <b>love to write code</b>, I think it's one of the skills that gives you more creative freedom nowadays.I know how to code in <b>javascript</b>,<b>python</b> and <b>C++</b> (Let's not forget about CSS and HTML ;D), but for me it's mainly about <b>Front-end developement</b> so javascript is usually my weapon of choice. I love experimenting with all this language can offer and make fun experiments, as this site"},
+                    "skills" :[
+                        {"text":"HTML","img":"/assets/logo_webedia.png","level":26}, 
+                        {"text":"CSS / SASS","img":"/assets/logo_webedia.png","level":26}, 
+                        {"text":"JAVASCRIPT","img":"/assets/logo_webedia.png","level":26}, 
+                        {"text":"REACT","img":"/assets/logo_webedia.png","level":26}, 
+                        {"text":"REDUX","img":"/assets/logo_webedia.png","level":15}, 
+                        {"text":"THREE","img":"/assets/logo_webedia.png","level":26}, 
+                        {"text":"GIT","img":"/assets/logo_webedia.png","level":20},
+                        {"text":"NODE","img":"/assets/logo_webedia.png","level":10},
+                        {"text":"PYTHON","img":"/assets/logo_webedia.png","level":20},
+                        {"text":"C++","img":"/assets/logo_webedia.png","level":15},
+                        {"text":"QT","img":"/assets/logo_webedia.png","level":20}
+                    ],
+                    "projects":[
+                        {"text":{"__html":"I worked during a year as <i><b>\"Creative Front-end\"</b></i> in <b>Webedia Spain</b> wich meant I designed and created programmatic ads and cool temporal dvertisement websites for films and movies. I primarily use Gatsby and three.js for the websites and jQuery or plain javascript for the programmatic ads."},"img":"/assets/logo_webedia.png"},
+                        {"text":{"__html":"When I started working as a designer in <b>Wallbox chargers</b>, as in every startup I had to wear many hats, and one of them was developing the company's <b>web portal</b> for it's launch in October 2018. It uses <b>Vue.js</b>, wich I'm not that used to but knowing react I could quickly adapt to it."},"img":"/assets/logo_wallbox.png"},
+                        {"text":{"__html":"I've also done some work for small business as <b>Ofiyogi</b> or <b>MIA concept store</b>. They are not big projects but they were nice to make too. I'm looking forward for more of this kind of projects, as they are usually great fun."},"img":"/assets/logo_freelance.png"},
+                        {"text":{"__html":"This website, I wanted to make a big <b>three</b> and <b>react</b> project, and here it is! It was a very interesting developement with lot's of different things to make both in 3D and javascript. I hope you like it!"},"img":"/assets/logo_myself.png"}
+                    ]
                     },
     "ux_ui" : { 
-                    "window_title":"UX / UI"
+                    "window_title":"UX / UI",
+                    "summary": {"__html": "The user experience and interface design are a very important part of my toolset now. I had the opportunity to start in this field through my work at <b>Wallbox Chargers</b> where I worked as a <i><b>\"Digital Product designer\"</b></i>.I think that it's an essential part of every digital product and in general to every digital experience,and it has definitely shaped my mind in every project where I get involved."},
+                    "skills" :[
+                        {"text":"SKETCH","img":"/assets/logo_webedia.png","level":26}, 
+                        {"text":"FLINTO","img":"/assets/logo_webedia.png","level":26}, 
+                        {"text":"INVISION","img":"/assets/logo_webedia.png","level":15}, 
+                        {"text":"FIGMA","img":"/assets/logo_webedia.png","level":20}, 
+                        {"text":"ADOBE INDESIGN","img":"/assets/logo_webedia.png","level":15},
+                        {"text":"ADOBE PHOTOSHOP","img":"/assets/logo_webedia.png","level":26}, 
+                        {"text":"ADOBE ILLUSTRATOR","img":"/assets/logo_webedia.png","level":26}, 
+                        {"text":"WIREFRAMING","img":"/assets/logo_webedia.png","level":21}, 
+                        {"text":"STATISTICAL ANALYSIS","img":"/assets/logo_webedia.png","level":18}, 
+                        {"text":"SURVEYING","img":"/assets/logo_webedia.png","level":15}, 
+                        {"text":"CONCEPT SKETCHING","img":"/assets/logo_webedia.png","level":22} 
+                    ],
+                    "projects":[
+                        {"text":{"__html":"I entered in <b>Wallbox Chargers</b> as a <i><b>\"Digital Product designer\"</b></i> wich essentially meant I got to design the Wallbox App for Android / IOS and the Web Portal to manage the chargers. I also designed the charger's UI and part of the commercial website design. It was a very demanding job with lots of responsability, but I got to learn a lot about digital product design and UX / UI."},"img":"/assets/logo_wallbox.png"},
+                        {"text":{"__html":"Recently I started freelance working with an digital startup called Wellat, and I had the chance to design their <b>Fitness</b> and <b>Nutrition</b> app for DELL. Very exiting project where I had to integrate the different aspects of the app and create a gamification system for rewarding good habits."},"img":"/assets/logo_wellatdell.png"}
+                    ]
                     },
-    "3d" : { 
-                    "window_title":"3d Artist"
+    "visual" : { 
+                    "window_title":"Visual Artist",
+                    "summary": {"__html": "I've always liked <b>3D</b> and <b>VFX</b> in movies and advertisement, and more and more I try to make things in this field. I've learned a lot this last year, and I did some interesting projects like co-directing and VFX supervising for an zb>ESCAC short film</b>, making some <b>freelance 3D</b> works and <b>this website</b>. I definitely want to keep learning and working, and I would like to get involved in more projects of this kind."},
+                    "skills" :[
+                        {"text":"BLENDER","img":"/assets/logo_webedia.png","level":20}, 
+                        {"text":"ZBRUSH","img":"/assets/logo_webedia.png","level":10}, 
+                        {"text":"SUBSTANCE PAINTER","img":"/assets/logo_webedia.png","level":15}, 
+                        {"text":"THREE.JS","img":"/assets/logo_webedia.png","level":26}, 
+                        {"text":"ADOBE AFTER EFFECTS","img":"/assets/logo_webedia.png","level":15},
+                        {"text":"FILM MAKING","img":"/assets/logo_webedia.png","level":12},
+                        {"text":"3D / 2D ANIMATION","img":"/assets/logo_webedia.png","level":12}
+                    ],
+                    "projects":[
+                        {"text":{"__html":"I got involved in an <b>ESCAC</b> short film called <i><b>\"AugReal\"</i></b> inspired in dark realistic sci-fi like <b>\"Black Mirror\"</i></b></i>, I co-writed and co-directed the short and I profited to add some cool VFX. I had helped in other projects before, but I really got in this one, a fascinating new experience I'll definitely try to repeat"},"img":"/assets/logo_escac.png"},
+                        {"text":{"__html":"When I learned <b>Blender</b>, and <b>Substance Painter</b> I started trying to make some Freelance 3D modeling and texturing to improve my skills, and it did. 3D modeling and sculpting exites me a lot, and I jump to every chance I have to do it, professionally and as a hobbie"},"img":"/assets/logo_freelance.png"},
+                        {"text":{"__html":"This website, I wanted to make a big <b>three</b> and <b>react</b> project, and here it is! It was a very interesting developement with lot's of different things to make both in 3D and javascript. I hope you like it!"},"img":"/assets/logo_myself.png"}
+                    ]
                     },
     "graphic" : { 
-                    "window_title":"Graphic design"
+                    "window_title":"Graphic design",
+                    "summary": {"__html": "Some years ago, while I was living in Paris, I made myself a graphic design portfolio and I started working as a <b>freelance graphic designer</b> with a collective of other freelancers called <i><b>\"The Ültreia Collective\"</b></i>. I did very different kinds of works from <b>branding</b>, to <b>Print</b> for <b>UGC Distribution</b>, and lots of other little works. The skills I learnt have helped me a lot throughout my career and are definitely the pilars of all my other stuff"},
+                    "skills" :[
+                        {"text":"ADOBE PHOTOSHOP","img":"/assets/logo_webedia.png","level":26}, 
+                        {"text":"ADOBE ILLUSTRATOR","img":"/assets/logo_webedia.png","level":26}, 
+                        {"text":"ADOBE INDESIGN","img":"/assets/logo_webedia.png","level":10}, 
+                        {"text":"ILLUSTRATION","img":"/assets/logo_webedia.png","level":20}, 
+                        {"text":"PIXEL ART","img":"/assets/logo_webedia.png","level":20}
+                    ],
+                    "projects":[
+                        {"text":{"__html":"I had I a great opportunity working for a big client as <b>UGC</b> at the start of my freelance career. I did print works for them and I got the chance to make the french adaptation of the poster from the film <i><b>\"Sing Street\"</b></i>."},"img":"/assets/logo_ugc.png"},
+                        {"text":{"__html":"I did a lot Branding for startups like <b>OUISHARE</b> focused on the collaborative economy and <b>GOUVERNAILS</b> a gouvernance consultory. I also did the braning for <b>LE CARILLON</b> a ngo that helped homeless in Paris and other little woks for many different clients."},"img":"/assets/logo_freelance.png"},
+                        {"text":{"__html":"I also did some illustration works, mainly <b>pixel art</b> for some clients, and I also did some ilustrative work for print like a <b>longboard design</b> I did for some client in Barcelona. I love illustration, and I have a background of traditional arts I really enjoy using whenever I have the opportunity"},"img":"/assets/logo_freelance.png"}
+                    ]
                     },
     "about" : { 
-                    "window_title":"About Me"
+                    "window_title":"About Me",
+                    "summary": "lalala",
+                    "skills" :[
+                        {"text":"skill1","img":"/assets/logo_webedia.png","level":15}, 
+                        {"text":"skill1","img":"/assets/logo_webedia.png","level":15}, 
+                        {"text":"skill1","img":"/assets/logo_webedia.png","level":15}, 
+                        {"text":"skill1","img":"/assets/logo_webedia.png","level":15}, 
+                        {"text":"skill1","img":"/assets/logo_webedia.png","level":15}, 
+                        {"text":"skill1","img":"/assets/logo_webedia.png","level":15}
+                    ],
+                    "projects":[
+                        {"text":"skill1","img":"/assets/logo_webedia.png"}, 
+                        {"text":"skill1","img":"/assets/logo_webedia.png"}, 
+                        {"text":"skill1","img":"/assets/logo_webedia.png"}, 
+                        {"text":"skill1","img":"/assets/logo_webedia.png"}
+                    ]
                     },
     "contact" : { 
                     "window_title":"Contact Me!!",

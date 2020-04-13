@@ -1,5 +1,20 @@
 @import '../../App.scss';
 
+@mixin content_item {
+    @include Border($BrightGreen);
+
+    margin: 0 3.5% 2.5% 3.5%;
+    padding: 2.5%;
+    &_title{
+
+        @include Font_Bold(20px, white);
+
+        border-bottom: 5px double $BrightGreen;
+        padding-bottom:1%;
+        margin-bottom: 2%;
+    }
+}
+
 .window{
 
     display: flex;
@@ -46,12 +61,121 @@
     &_content{
 
         @include cursor_auto;
+        @include Font_Regular(18px, white);
 
         background-color: rgba(0,0,0,0.9);
         height: 100%;
         width: 100%;
         display: flex;
         flex-direction: column;
+        overflow: scroll;
+        overflow-x: hidden;
+
+        b{
+            color:$BrightGreen
+        }
+
+        &_summary{
+            @include content_item;
+            margin-top: 2.5%;
+        }
+
+        &_knowledge{
+            @include content_item;
+
+            &_container{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            &_item{
+
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 2.5%;
+
+
+                &_skill{
+                    display: flex;
+                    flex-direction: row;
+                    width: 90%;
+
+                    img{
+                        width: 25px;
+                    }
+                    
+                    p{
+                        margin: 0;
+                        margin-left: 20px;
+                    }
+                }
+
+               &_level{
+                display: flex;
+                flex-direction: row;
+                margin-left: 1%;
+                padding-left: 2%;
+                border-left: 5px double $BrightGreen;
+
+                    &_bar{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+
+                        div{
+                            width: 3px;
+                            margin-left: 3px;
+                        }
+                        &_active{
+                          background-color: $BrightGreen;
+                        }
+                        &_inactive{
+                           background-color: $Window_inactive;
+                        }
+                    }
+               }
+            }
+        }
+
+        &_projects{
+            @include content_item;
+
+            &_item{
+                @include Border($BrightGreen);
+                padding: 2%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                div{
+                    @include Font_Regular(16px, white);
+                    border-right: 5px double $BrightGreen;
+                    padding-right: 2%;
+                    width: 100%;
+                }
+
+                img{
+                    padding-left: 2%;
+                    max-width: 75px;
+                    width: 30%;
+                    min-width: 70px;
+                }
+            }
+        }
+
+        &_contact{
+            padding: 0 3.5% 2.5% 3.5%;
+            span{
+                @include Font_Bold(18px, $BrightGreen);
+                text-decoration: underline;
+                @include cursor_pointer;
+
+                &:hover{
+                    color:white;
+                }
+            }
+        }
     }
 
     &_active{

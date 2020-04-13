@@ -140,10 +140,10 @@ export default function Head({ mouse, ...props }) {
             onPointerOut={e => {props.setBrainHover(e,"no_hover");e.stopPropagation()}}
             onClick={e=>{if(props.brainMode) props.newWindow("graphic");e.stopPropagation()}}
             />   
-          <mesh visible geometry={nodes["brain_3d"].geometry} material={props.brainHover === "3D ARTIST" ? brain_hovered : brain_mat} position={nodes["brain_3d"].position}
-            onPointerMove={e => {if(props.brainMode) props.setBrainHover(e,"3D ARTIST");e.stopPropagation()}}
+          <mesh visible geometry={nodes["brain_3d"].geometry} material={props.brainHover === "VISUAL ARTIST" ? brain_hovered : brain_mat} position={nodes["brain_3d"].position}
+            onPointerMove={e => {if(props.brainMode) props.setBrainHover(e,"VISUAL ARTIST");e.stopPropagation()}}
             onPointerOut={e => {props.setBrainHover(e, "no_hover");e.stopPropagation()}}
-            onClick={e=>{if(props.brainMode) props.newWindow("3d");e.stopPropagation()}}
+            onClick={e=>{if(props.brainMode) props.newWindow("visual");e.stopPropagation()}}
             />   
           <mesh visible geometry={nodes["brain_aboutMe"].geometry} material={props.brainHover === "ABOUT ME" ? brain_hovered : brain_mat} position={nodes["brain_aboutMe"].position}
             onPointerMove={e => {if(props.brainMode) props.setBrainHover(e,"ABOUT ME");e.stopPropagation()}}

@@ -19,14 +19,12 @@ export default function CustomForm({ status, message, onValidated }) {
                 ref={node => (email = node)}
                 type="email"
                 placeholder="Your email"
-                value="jaranguren.jav@gmail.com"
             />
             <br />
             <textarea             
                 ref={node => (message_text = node)}
                 type="text"
                 placeholder="Write me a nice letter, I like talking to humans from time to time!"
-                value="Hola!"
             />
             <br />
             <div>

@@ -92,7 +92,7 @@ class App extends Component {
           </div>
           {this.state.mouseOut ? "" : <Cursor mouse={this.state.mouse} clicked={this.state.clicked} scissorCursor={this.state.cutlineHovered} brainHover={this.state.brainHover} brainMode={this.state.brainMode}/>}
           {this.state.width < 480 ? "" : this.state.windows.length > 0 ? <div className="closeAll" onClick={e => this.setState({windows:[]}) }>Close All</div> : ""}
-          {this.state.windows.length > 0 ? this.state.windows.map((type, index) => <Window isMobile={this.state.width < 480 ? true : false} key={index} type={type} number={index} closeWindow={this.closeWindow} setActive={number => this.setState({window_active:number})} isActive={this.state.window_active}/>) : ""}
+          {this.state.windows.length > 0 ? this.state.windows.map((type, index) => <Window isMobile={this.state.width < 480 ? true : false} key={index} type={type} number={index} closeWindow={this.closeWindow} setActive={number => this.setState({window_active:number})} isActive={this.state.window_active} newWindow={this.newWindow}/>) : ""}
             <Canvas shadowMap 
             pixelRatio={window.devicePixelRatio}
             camera={{fov: 40,position: [0, 0, 7]}}

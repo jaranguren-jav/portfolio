@@ -11,6 +11,8 @@ export default function Window({ number, type, isActive, isMobile, ...props }) {
     const content = data.default[type]
     let active = isActive === number ? true : false
     let [initialPositions, setPositions] = useState({ x: 0, y: 0 })
+    let levelItems = []
+    for(let i=0;i<26;i++){levelItems.push(i)}
 
     useEffect(() => {
         setPositions({ x: window.innerWidth / (2.9 + _Math.randFloat(-1, 1)), y: window.innerHeight / (3.5 + _Math.randFloat(-1, 1)) })
@@ -33,7 +35,7 @@ export default function Window({ number, type, isActive, isMobile, ...props }) {
                 handleClasses={{ bottomRight: "window_resize" }}
             >
                 <div onMouseDown={e => props.setActive(number)} className={active ? "window_bar window_active" : "window_bar window_inactive"}><div className="window_bar_title"><span style={{ color: active ? "white" : "black" }}>{content.window_title}</span></div><div className="window_bar_close" onClick={e => props.closeWindow(number)}>X</div></div>
-                <div onMouseDown={e => props.setActive(number)} className={active ? "window_content window_active" : "content window_inactive"}>
+                <div onMouseDown={e => props.setActive(number)} className={active ? "window_content window_active" : "window_content window_inactive"}>
                 {type === "contact" ? 
                     <MailchimpSubscribe
                     url={content.url}
@@ -41,12 +43,52 @@ export default function Window({ number, type, isActive, isMobile, ...props }) {
                         <CustomForm
                             status={status}
                             message={message}
-                            onValidated={formData => {subscribe(formData); console.log(formData)}}
+                            onValidated={formData => {subscribe(formData)}}
                         />
                     )}
                     />
-                : ""}
-            </div>
+     
+                : 
+                <div>                       
+                    <div className="window_content_summary">
+                        <div className="window_content_summary_title">SUMMARY</div>
+                        <div className="window_content_summary_item" dangerouslySetInnerHTML={content.summary}></div>
+                    </div> 
+                    <div className="window_content_knowledge">
+                        <div className="window_content_knowledge_title">KNOWLEDGE</div>
+                        {content.skills.map(item =>
+                        <div className="window_content_knowledge_item">
+                            <div className="window_content_knowledge_item_skill">
+                                <img src={item.img}></img>
+                                <p>{item.text}</p>
+                            </div>
+                            <div className="window_content_knowledge_item_level">
+                                <div className="window_content_knowledge_item_level_label">Level: </div>
+                                <div className="window_content_knowledge_item_level_bar">
+                                    {levelItems.map((bar,index) => index < item.level ? 
+                                    <div className="window_content_knowledge_item_level_bar_active"></div> 
+                                    : 
+                                    <div className="window_content_knowledge_item_level_bar_inactive"></div>)}
+                                </div>
+                            </div>
+                        </div>                               
+                        )}     
+                    </div>  
+                    <div className="window_content_projects">
+                        <div className="window_content_projects_title">SOME PROJECTS</div>
+                        {content.projects.map(item => 
+                            <div className="window_content_projects_item">
+                                <div dangerouslySetInnerHTML={item.text}></div>
+                                <img src={item.img}></img>
+                            </div>
+                        )}
+                    </div>
+                    <div className="window_content_contact">
+                            If you want to know more about my skills in <b>{content.window_title},</b> please contact me through my <span>linkedIn</span> or write me a nice <span onClick={e=>{props.newWindow("contact");e.stopPropagation()}}>email</span>
+                    </div>  
+                </div>
+                }
+                </div>
         </Resizable>  
     </Draggable > 
     )
