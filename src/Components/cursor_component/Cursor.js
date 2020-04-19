@@ -6,7 +6,7 @@ export default function Cursor(props) {
         props.brainHover !== "no_hover" && props.brainMode?
         //Brain Hover
         <div className="cursor cursor_brainHover" style={{top: props.mouse.y - 50, left: props.mouse.x - 50}}>
-          <div className="cursor_brainHover_cross"></div>
+          <div className="cursor_brainHover_cross" style={{backgroundImage: "url(./assets/cursor_cross.svg)"}}></div>
           <h1 className="cursor_brainHover_title">{props.brainHover}</h1>
           <div className="cursor_brainHover_preview"></div>
         </div>

@@ -1,4 +1,21 @@
-@import '../../../App.scss';
+$BrightGreen: rgb(136, 255, 255);
+$R: rgba(255, 0, 0, 0.75);
+$G: rgba(0, 255, 0, 0.75);
+$B: rgba(0, 0, 255, 0.75);
+
+@mixin Font_Bold($size,$color){
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    font-size: $size;
+    color:$color;
+  }
+
+@mixin Font_Regular($size,$color){
+font-family: 'Roboto Mono', monospace;
+font-weight: 300;
+font-size: $size;
+color:$color;
+}
 
 @mixin message($color){
     font-family: 'Roboto Mono', monospace;
@@ -8,6 +25,10 @@
     align-self: flex-end;
     padding: 0 10px;
 }
+
+@mixin Border($color){
+    border: 5px double $color
+  }
 
 @mixin input_box{
     @include Font_Regular(18px, white);

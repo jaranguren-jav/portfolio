@@ -1,4 +1,3 @@
-
 $Window: rgb(127, 195, 204);
 $Window_inactive: rgb(42, 94, 94);
 $BrightGreen: rgb(136, 255, 255);
@@ -6,10 +5,6 @@ $BrightGreen_hover: rgb(207, 255, 255);
 $R: rgba(255, 0, 0, 0.75);
 $G: rgba(0, 255, 0, 0.75);
 $B: rgba(0, 0, 255, 0.75);
-
-@mixin cursor_auto {cursor: url(/assets/window_cursors/cursor_normal.cur), auto;}
-@mixin cursor_pointer {cursor: url(/assets/window_cursors/cursor_pointer.cur), pointer;}
-@mixin cursor_resize {cursor: url(/assets/window_cursors/cursor_resize.cur), se-resize !important;}
 
 @mixin Border($color){
   border: 5px double $color
@@ -20,6 +15,16 @@ $B: rgba(0, 0, 255, 0.75);
   right: 0;
   left: 0;
   margin: 0 2.5vw;
+}
+
+
+@mixin  presentation_adapt_mobile{
+  text-align: center;
+  right: 0;
+  left: 0;
+  margin: 0;
+  bottom: none;
+  top: 0;
 }
 
 @mixin  links_adapt{
@@ -59,7 +64,6 @@ $B: rgba(0, 0, 255, 0.75);
   width: 45px;
   background-size:contain;
   z-index: 2;
-  cursor: url("/assets/window_cursors/cursor_pointer.cur"), pointer;
   
   &:hover{
     transform : scale(1.1);
@@ -70,21 +74,105 @@ $B: rgba(0, 0, 255, 0.75);
 .presentation{
   
   @include  element_over_canvas;
-  @include text-glich;
   
   color:$BrightGreen;
   pointer-events: none;
   left: 2vw;
   bottom: 5vh;
   text-align: justify;
-  border: 5px double $BrightGreen;
 
-  div{
+  &_box{
+    @include text-glich;
     padding: 5px 10px;
-    &:nth-child(1){ border-bottom: 5px double $BrightGreen;}
+    border: 5px double $BrightGreen;
+    &:nth-child(1){ border-bottom: none;}
     i{ color:$BrightGreen_hover }
   }
 }
+
+.presentation_mobile{
+  
+  @include  element_over_canvas;
+  @include Font_Bold(calc(14px + 6 * ((100vw - 320px) / 680)),$BrightGreen);
+  @include text-glich;
+
+  width:100%;
+  top: 12vh;
+  text-align:center;
+  width: 100%;
+}
+
+.mobile_links{
+  @include  element_over_canvas;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  right: 0;
+  margin: 1vh 3vw;
+  &_link{
+    width: 30px;
+    height: 30px;
+    margin: 2vw;
+  }
+}
+
+.mobile{
+  @include  element_over_canvas;
+  right: 0;
+  left: 0;
+  bottom: 10vh;
+  margin:0 5vw;
+
+  &_navigation{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+  
+    &_arrow{
+      @include Font_Bold(30px,$BrightGreen);
+    }
+  
+    &_button{
+      @include Font_Bold(20px,white);
+      @include text-glich;
+      border: 2px solid white;
+      padding: 1vh 5vw;
+      }
+    }
+
+  &_info{
+    @include Font_Regular(12px,#808080);
+    padding: 1vh;
+    text-align: center;
+  }
+}
+
+
+.discover_button{
+  @include  element_over_canvas;
+  @include Font_Bold(16px,black);
+  
+  text-align: center;
+  right: 0;
+  left: 0;
+  bottom: 5vh;
+  margin: 0 10vw;
+  padding: 1vh;
+  background-color: $BrightGreen;
+  border: 5px outset $BrightGreen;
+  font-weight: 700;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 1s linear;
+}
+
+.fade{
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 1s, opacity 1s linear;
+}
+
 
 .links{
 
@@ -99,16 +187,12 @@ $B: rgba(0, 0, 255, 0.75);
   &_linkedIn{
 
     @include link;
-
-    background-image: url("/assets/logo_linkedIn.png");
     margin-right: 20px;
   }
 
   &_mailTo{
 
     @include link;
-
-    background-image: url("/assets/logo_mailto.png");
   }
 }
 
@@ -119,7 +203,6 @@ $B: rgba(0, 0, 255, 0.75);
 
   position: absolute;
   z-index: 5;
-  cursor: url("/assets/window_cursors/cursor_pointer.cur"), pointer;
   padding: 10px 0;
 
   &:hover{
@@ -153,7 +236,10 @@ canvas {
 @media screen and (max-width: 480px) {
   .presentation{
     @include Font_Bold(calc(18px + 6 * ((100vw - 320px) / 680)),$BrightGreen);
-    @include presentation_adapt
+    @include presentation_adapt_mobile
+    &_box{
+      border: 3px double $BrightGreen
+    }
   }
 
   .links{

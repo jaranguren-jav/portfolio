@@ -1,18 +1,70 @@
-@import '../../App.scss';
+$Window: rgb(127, 195, 204);
+$Window_inactive: rgb(42, 94, 94);
+$BrightGreen: rgb(136, 255, 255);
+$BrightGreen_hover: rgb(207, 255, 255);
+$R: rgba(255, 0, 0, 0.75);
+$G: rgba(0, 255, 0, 0.75);
+$B: rgba(0, 0, 255, 0.75);
+
+
+@mixin Border($color){
+  border: 5px double $color
+}
+
+@mixin  presentation_adapt{
+  text-align: center;
+  right: 0;
+  left: 0;
+  margin: 0 2.5vw;
+}
+
+@mixin  links_adapt{
+  right: 5vw;
+  top:2vh;
+  bottom: auto;
+}
+
+@mixin  element_over_canvas{
+  position: absolute;
+  z-index: 2;
+}
+
+@mixin Font_Bold($size,$color){
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 500;
+  font-size: $size;
+  color:$color;
+}
+
+@mixin Font_Regular($size,$color){
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 300;
+  font-size: $size;
+  color:$color;
+}
+
+@mixin text-glich {
+  animation-name: text_glitch ;
+  animation-duration: 0.1s;
+  animation-iteration-count: infinite;
+  transition: linear;
+}
+
+
+@mixin content_title{
+    @include Font_Bold(20px, white);
+
+    border-bottom: 5px double $BrightGreen;
+    padding-bottom:1%;
+    margin-bottom: 2%;
+}
 
 @mixin content_item {
     @include Border($BrightGreen);
 
     margin: 0 3.5% 2.5% 3.5%;
     padding: 2.5%;
-    &_title{
-
-        @include Font_Bold(20px, white);
-
-        border-bottom: 5px double $BrightGreen;
-        padding-bottom:1%;
-        margin-bottom: 2%;
-    }
+    &_title{ @include content_title }
 }
 
 .window{
@@ -24,8 +76,6 @@
     transition: ease-in;
 
     &_bar{
-
-        @include cursor_auto;
         @include Font_Bold(12px,black);
 
         border-radius: 10px 10px 0px 0px;
@@ -37,18 +87,13 @@
         grid-template-columns: auto 20px;
 
         &_title{
-            background-image: url("/assets/bar_pattern.png");
-
             span{
                 background-color: rgb(127, 195, 204);
                 padding:0px 10px;
             }
         }
 
-        &_close{
-
-            @include cursor_pointer;
-            
+        &_close{        
             justify-self: right;
             padding:0px 7px;
 
@@ -60,7 +105,6 @@
 
     &_content{
 
-        @include cursor_auto;
         @include Font_Regular(18px, white);
 
         background-color: rgba(0,0,0,0.9);
@@ -73,6 +117,34 @@
 
         b{
             color:$BrightGreen
+        }
+
+        &_about{
+
+            @include Border($BrightGreen);
+            margin: 2.5% 3.5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+
+            &_portrait{
+                display: flex;
+                flex-direction: column;
+                border-bottom: 5px double $BrightGreen;
+                height: 18vh;
+                background-size: cover;
+                background-position: center;
+                background-size: cover;
+            }
+            
+            &_content{
+                padding: 2.5%;
+
+                &_title{
+                    @include content_title
+                }
+            }
         }
 
         &_summary{
@@ -145,21 +217,43 @@
                 @include Border($BrightGreen);
                 padding: 2%;
                 display: flex;
-                flex-direction: row;
-                align-items: center;
 
-                div{
-                    @include Font_Regular(16px, white);
-                    border-right: 5px double $BrightGreen;
-                    padding-right: 2%;
-                    width: 100%;
+                &_column{
+                    flex-direction: column-reverse;
+
+                    .window_content_projects_item_text{
+                        @include Font_Regular(14px, white);
+                        padding: 2%;
+                    }
+
+                    .window_content_projects_item_img{
+                        margin-bottom: 2%;
+                        max-width: 100%;
+                        width: 100%;
+                        border-bottom: 5px double $BrightGreen;
+                        height:100px
+                    }
                 }
 
-                img{
-                    padding-left: 2%;
-                    max-width: 75px;
-                    width: 30%;
+                &_row{
+                    flex-direction: row;
+
+                    .window_content_projects_item_text{
+                        @include Font_Regular(16px, white);
+                        padding-right: 2%;
+                    }
+                                        
+                    .window_content_projects_item_img{
+                        margin-left: 2%;
+                        width: 30%;
+                        max-width: 75px;
+                        border-left: 5px double $BrightGreen;
+                    }
+                }
+
+                &_img{
                     min-width: 70px;
+                    background-size: contain;
                 }
             }
         }
@@ -169,7 +263,6 @@
             span{
                 @include Font_Bold(18px, $BrightGreen);
                 text-decoration: underline;
-                @include cursor_pointer;
 
                 &:hover{
                     color:white;
@@ -185,11 +278,60 @@
     &_inactive{
         @include Border($Window_inactive);
     }
-
-    &_resize{
-        @include cursor_resize;
-    }
     
+}
+
+.mobile_item{
+    border:none !important;
+}
+
+.mobile_title{
+    @include Border($BrightGreen);
+    border-bottom: none;
+    text-align: center;
+    margin: 0;
+    padding: 4%;
+}
+
+.mobile_content{
+    @include Border($BrightGreen);
+    font-size: 14px;
+    padding: 5%;
+}
+
+.mobile_item_skill{
+
+    flex-direction: column;
+    @include Border($BrightGreen);
+    padding: 5%;
+    margin: 0;
+    p{
+        font-weight: 500;
+        margin: 0;
+        margin-bottom: 2.5%;
+    }
+
+    .window_content_knowledge_item_level{
+        &_label{
+            font-size: 12px;
+        }
+        &_bar{
+            width: 100%;
+            div{
+                max-width:4px;
+                min-width: 2px;
+                margin-left: 2%;
+            }
+        }
+    }
+}
+
+.mobile_contact{
+    font-size:14px;
+    text-align: center;
+    span{
+        font-size:16px;
+    }
 }
 
 @keyframes open {

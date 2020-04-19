@@ -1,4 +1,5 @@
 {
+  "homepage": "https://jaranguren-jav.github.io/portfolio",
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
@@ -18,11 +19,15 @@
     "react-dom": "^16.13.0",
     "react-draggable": "^4.2.0",
     "react-mailchimp-subscribe": "^2.1.0",
+    "react-resize-observer": "^1.1.1",
+    "react-resize-reporter": "^1.0.0",
     "react-scripts": "3.4.0",
     "react-three-fiber": "^4.0.20",
     "three": "^0.114.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -42,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
   }
 }
