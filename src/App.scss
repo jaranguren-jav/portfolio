@@ -71,6 +71,16 @@ $B: rgba(0, 0, 255, 0.75);
   }
 }
 
+.back{
+  @include  element_over_canvas;
+  @include Font_Bold(16px,$BrightGreen);
+  top: 2.5vh;
+  left:2.5vh;
+  &:hover{
+    color:white;
+  }
+}
+
 .presentation{
   
   @include  element_over_canvas;
@@ -236,7 +246,7 @@ canvas {
 @media screen and (max-width: 480px) {
   .presentation{
     @include Font_Bold(calc(18px + 6 * ((100vw - 320px) / 680)),$BrightGreen);
-    @include presentation_adapt_mobile
+    @include presentation_adapt;
     &_box{
       border: 3px double $BrightGreen
     }
@@ -244,6 +254,11 @@ canvas {
 
   .links{
     @include  links_adapt
+  }
+
+  .back{
+    @include  element_over_canvas;
+    @include Font_Bold(12px,#808080);
   }
 }
 

@@ -83,13 +83,6 @@ $B: rgba(0, 0, 255, 0.75);
     animation-duration: 1s;
     transition: linear;
 
-    &_cross{
-      background-size: cover;
-      margin-right: 10px;
-      width:75px;
-      height:75px;
-    }
-
     &_title{
 
       @include Font_Bold(50px,white);

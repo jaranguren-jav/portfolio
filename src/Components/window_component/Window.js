@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef} from "react"
-import MailchimpSubscribe from "react-mailchimp-subscribe"
 import Draggable from 'react-draggable';
 import { Resizable } from "re-resizable";
 import "./Window.scss"
 import * as data from "./content.json"
 import { Math as _Math } from "three"
-import CustomForm from "./custom_form_component/CustomForm"
 import ResizeObserver from 'react-resize-observer';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
  
 
 export default function Window({ number, type, isActive, isMobile, ...props }) {
@@ -19,8 +18,8 @@ export default function Window({ number, type, isActive, isMobile, ...props }) {
     for(let i=0;i<26;i++){levelItems.push(i)}
 
     useEffect(() => {
-        if(contentWindow.current){getContentWidth(contentWindow.current.offsetHeight)}
-        setPositions({ x: window.innerWidth / (2.9 + _Math.randFloat(-1, 1)), y: window.innerHeight / (3.5 + _Math.randFloat(-1, 1)) })
+        !isMobile ? getContentWidth(window.innerWidth * 60 / 100) : getContentWidth(window.innerWidth - 10)
+        setPositions({ x: window.innerWidth / 2 - window.innerWidth * 60 / 200, y: window.innerHeight / 2 - window.innerHeight * 65 / 200  })
     }, []);
 
     return (
@@ -41,25 +40,22 @@ export default function Window({ number, type, isActive, isMobile, ...props }) {
             >
                 <div onMouseDown={e => props.setActive(number)} className={active ? "window_bar window_active" : "window_bar window_inactive"} style={{cursor: "url(./portfolio/assets/window_cursors/cursor_normal.cur), auto"}}><div className="window_bar_title" style={{backgroundImage: "url(assets/bar_pattern.png)"}}><span style={{ color: active ? "white" : "black" }}>{content.window_title}</span></div><div className="window_bar_close" style={{cursor: "url(./portfolio/assets/window_cursors/cursor_pointer.cur), pointer"}} onClick={e => props.closeWindow(number)}>X</div></div>
                 <div onMouseDown={e => props.setActive(number)} ref={contentWindow} className={active ? "window_content window_active" : "window_content window_inactive"} style={{cursor: "url(./portfolio/assets/window_cursors/cursor_normal.cur), auto"}}>
-                <ResizeObserver onResize={(rect) => getContentWidth(rect.width)}/>
+                <ResizeObserver onResize={(rect) => {getContentWidth(rect.width);console.log(rect.width)}}/>
                 {type === "contact" ? 
-                    <MailchimpSubscribe
-                    url={content.url}
-                    render={({ subscribe, status, message }) => (
-                        <CustomForm
-                            status={status}
-                            message={message}
-                            onValidated={formData => {subscribe(formData)}}
-                        />
-                    )}
-                    />
+                    <div className={contentWidth < 575 || isMobile ? "window_content_email_mobile" : "window_content_email"}>
+                        <div className="window_content_email_text"><b>Hey!</b> Thanks for checking out my web if you want to <b>contact me</b>, please send me an <b>email</b> at:</div>
+                        <CopyToClipboard text="jaranguren.jav@gmail.com">
+                            <div className="window_content_email_email" style={{cursor: "url(./portfolio/assets/window_cursors/cursor_pointer.cur), pointer"}}></div>
+                        </CopyToClipboard>
+                        <div className="window_content_email_text_small">(please be nice...)</div>
+                    </div>
      
                 : 
 
                 type === "ABOUT ME" ? 
 
                 <div className={contentWidth < 575 || isMobile ? "window_content_about mobile_item" : "window_content_about"}>
-                    <div className="window_content_about_portrait" style={{backgroundImage:"url(/assets/photo.png)"}}>
+                    <div className="window_content_about_portrait" style={{backgroundImage:"url(./assets/photo.png)"}}>
                     </div>
                     <div className="window_content_about_content">
                         <div className="window_content_about_content_title">ABOUT MYSELF</div>
@@ -69,7 +65,7 @@ export default function Window({ number, type, isActive, isMobile, ...props }) {
 
                 :
 
-                <div>                  
+                <div>         
                     <div className={contentWidth < 575 || isMobile ? "window_content_summary mobile_item" : "window_content_summary"}>
                         <div className={contentWidth < 575 || isMobile ? "window_content_summary_title mobile_title" : "window_content_summary_title"}>SUMMARY</div>
                         <div className={contentWidth < 575 || isMobile ? "window_content_summary_item mobile_content" : "window_content_summary_item"}  dangerouslySetInnerHTML={content.summary}></div>
@@ -104,7 +100,7 @@ export default function Window({ number, type, isActive, isMobile, ...props }) {
                         )}
                     </div>
                     <div className={contentWidth < 575 || isMobile ? "window_content_contact mobile_contact" : "window_content_contact"}>
-                            If you want to know more about my skills in <b>{content.window_title},</b> please contact me through my <span>linkedIn</span> or write me a nice <span onClick={e=>{props.newWindow("contact");e.stopPropagation()}} style={{cursor: "url(./portfolio/assets/window_cursors/cursor_pointer.cur), pointer"}}>email</span>
+                            If you want to know more about my skills in <b>{content.window_title},</b> please contact me through my <a href={"https://www.linkedin.com/in/julen-aranguren-a28a8611a"} target="_blank">linkedIn</a> or write me a nice <span onClick={e=>{props.newWindow("contact");e.stopPropagation()}} style={{cursor: "url(./portfolio/assets/window_cursors/cursor_pointer.cur), pointer"}}>email</span>
                     </div>  
                 </div>
                 }

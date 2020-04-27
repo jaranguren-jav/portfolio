@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import React, { useRef, useMemo } from 'react'
 import { useFrame, useThree } from 'react-three-fiber'
 
-export default function Particles({ count, mouse }) {
+export default function Particles({ count }) {
   const mesh = useRef()
   const { size, viewport } = useThree()
   const aspect = size.width / viewport.width
@@ -32,16 +32,6 @@ export default function Particles({ count, mouse }) {
       const a = Math.cos(t) + Math.sin(t * 1) / 10
       const b = Math.sin(t) + Math.cos(t * 2) / 10
       const s = Math.cos(t)
-
-      let xDistance = Math.abs(particle.mx) - Math.abs(mouse.x);
-      let yDistance = Math.abs(particle.my) - Math.abs(mouse.y);
-      let distance = Math.sqrt(xDistance * xDistance + yDistance * yDistance);
-      
-      if (distance < 1) {
-        let angle = Math.atan2(yDistance,xDistance);
-        particle.mx  += 50 * angle
-        particle.my += 50 * angle
-      }
 
       // Update the dummy object
       dummy.position.set(

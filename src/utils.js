@@ -2,9 +2,14 @@ import * as THREE from "three"
 import React from "react"
 import lerp from "lerp"
 
-export function access_granted(font){
+export function access_granted(font,state){
   //Creates the geometry for the text
-  let font_shapes = font.generateShapes( "ACCESS GRANTED", 0.2 );
+  let font_shapes
+  if(state){
+    font_shapes = font.generateShapes( "ACCESS GRANTED", 0.2 );
+  } else {
+    font_shapes = font.generateShapes( "BYE, THANKS!", 0.2 );
+  }
   let font_geometry = new THREE.ShapeBufferGeometry( font_shapes );
   let plane_geometry = new THREE.PlaneBufferGeometry( 3, 0.5, 1 )
 
@@ -13,7 +18,7 @@ export function access_granted(font){
   let plane_material = new THREE.MeshBasicMaterial( { color: 0x000000 } )
 
   return (
-    <group scale={[0.5,0.5,0.5]} position={ [-0.55, 0, 1.5]}>    
+    <group scale={[0.5,0.5,0.5]} position={ [-0.55, 0, 2]}>    
       <mesh geometry={font_geometry} material={font_material}></mesh>
       <mesh geometry={plane_geometry} material={plane_material} position={ [1, 0.1, -0.05]}></mesh>
     </group>
@@ -105,22 +110,23 @@ export function line(event, hoveredItem,font){
  }
 }
 
-export function moveHead(mouse, head) {
-  //Separate the eyes objects in an array to isolate their movement
-  let eyes = [head.children[0],head.children[1],head.children[2],head.children[3]]
+export function moveHead(mouse, group) {
   //Sets the movement for the head group
   let degrees = getMouseDegrees(mouse.x, mouse.y, 20)
-  head.rotation.xD = lerp(head.rotation.xD || 0, degrees.y, 0.1)
-  head.rotation.yD = lerp(head.rotation.yD || 0, degrees.x, 0.1)
-  head.rotation.x = THREE.Math.degToRad(head.rotation.xD)
-  head.rotation.y = THREE.Math.degToRad(head.rotation.yD)
-  //Sets the movement for the eyes
-  eyes.forEach((item) => {
-      item.rotation.xD = lerp(item.rotation.xD || 0, degrees.y, 0.2)
-      item.rotation.yD = lerp(item.rotation.yD || 0, degrees.x, 0.2)
-      item.rotation.x = THREE.Math.degToRad(item.rotation.xD)
-      item.rotation.y = THREE.Math.degToRad(item.rotation.yD)
-  })
+  group.rotation.xD = lerp(group.rotation.xD || 0, degrees.y, 0.1)
+  group.rotation.yD = lerp(group.rotation.yD || 0, degrees.x, 0.1)
+  group.rotation.x = THREE.Math.degToRad(group.rotation.xD)
+  group.rotation.y = THREE.Math.degToRad(group.rotation.yD)
+  if(group.children.length > 2){
+    //Sets the movement for the eyes
+    let eyes = [group.children[0],group.children[1],group.children[2],group.children[3]]
+    eyes.forEach((item) => {
+        item.rotation.xD = lerp(item.rotation.xD || 0, degrees.y, 0.2)
+        item.rotation.yD = lerp(item.rotation.yD || 0, degrees.x, 0.2)
+        item.rotation.x = THREE.Math.degToRad(item.rotation.xD)
+        item.rotation.y = THREE.Math.degToRad(item.rotation.yD)
+    })
+  } 
 }
 
 export function getMousePos(e) 

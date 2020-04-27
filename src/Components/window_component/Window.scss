@@ -119,6 +119,77 @@ $B: rgba(0, 0, 255, 0.75);
             color:$BrightGreen
         }
 
+        &_email{
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            &_text{
+                margin: 2.5%;
+                &_small{
+                    margin: 2.5%;
+                    opacity: 0.5;
+                }
+            }
+            &_email{
+                @include Border($BrightGreen);
+                @include Font_Bold(25px,white);
+                @include text-glich;
+
+                padding: 2.5% 10%;
+                text-align: center;
+                text-transform: uppercase;
+
+                &:before{
+                    content: "jaranguren.jav@gmail.com";
+                }
+
+                &:hover{
+                    &:before{
+                        content: "click to copy!";
+                        background-color: $BrightGreen;
+                    }
+                }
+            }
+        }
+
+        &_email_mobile{
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            &_text{
+                text-align: center;
+                margin: 2.5%;
+                &_small{
+                    margin: 2.5%;
+                    opacity: 0.5;
+                }
+            }
+            &_email{
+                @include Border($BrightGreen);
+                @include Font_Bold(25px,white);
+                @include text-glich;
+
+                padding: 2.5% 10%;
+                text-align: center;
+                text-transform: uppercase;
+
+                &:before{
+                    content: "jaranguren.jav@gmail.com";
+                }
+
+                &:hover{
+                    &:before{
+                        content: "click to copy!";
+                        background-color: $BrightGreen;
+                    }
+                }
+            }
+        }
+
         &_about{
 
             @include Border($BrightGreen);
@@ -175,6 +246,7 @@ $B: rgba(0, 0, 255, 0.75);
 
                     img{
                         width: 25px;
+                        height: 25px
                     }
                     
                     p{
@@ -241,26 +313,28 @@ $B: rgba(0, 0, 255, 0.75);
                     .window_content_projects_item_text{
                         @include Font_Regular(16px, white);
                         padding-right: 2%;
+                        border-right: 5px double $BrightGreen;
                     }
                                         
                     .window_content_projects_item_img{
                         margin-left: 2%;
                         width: 30%;
                         max-width: 75px;
-                        border-left: 5px double $BrightGreen;
                     }
                 }
 
                 &_img{
                     min-width: 70px;
                     background-size: contain;
+                    background-position: center;
+                    background-repeat: no-repeat;
                 }
             }
         }
 
         &_contact{
             padding: 0 3.5% 2.5% 3.5%;
-            span{
+            a{
                 @include Font_Bold(18px, $BrightGreen);
                 text-decoration: underline;
 

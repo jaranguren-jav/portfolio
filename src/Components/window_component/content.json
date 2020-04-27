@@ -3,17 +3,17 @@
                     "window_title":"Front-end developer",
                     "summary": {"__html": "I <b>love to write code</b>, I think it's one of the skills that gives you more creative freedom nowadays.I know how to code in <b>javascript</b>,<b>python</b> and <b>C++</b> (Let's not forget about CSS and HTML ;D), but for me it's mainly about <b>Front-end developement</b> so javascript is usually my weapon of choice. I love experimenting with all this language can offer and make fun experiments, as this site"},
                     "skills" :[
-                        {"text":"HTML","img":"/portfolio/assets/icons/frontend/icon_html.png","level":26}, 
-                        {"text":"CSS / SASS","img":"/portfolio/assets/icons/frontend/icon_sass.png","level":26}, 
-                        {"text":"JAVASCRIPT","img":"/portfolio/assets/icons/frontend/icon_javascript.png","level":26}, 
-                        {"text":"REACT","img":"/portfolio/assets/icons/frontend/icon_react.png","level":26}, 
-                        {"text":"REDUX","img":"/portfolio/assets/icons/frontend/icon_redux.png","level":15}, 
-                        {"text":"THREE","img":"/portfolio/assets/icons/frontend/icon_three.png","level":26}, 
-                        {"text":"GIT","img":"/portfolio/assets/icons/frontend/icon_github.png","level":20},
-                        {"text":"NODE","img":"/portfolio/assets/icons/frontend/icon_node.png","level":10},
-                        {"text":"PYTHON","img":"/portfolio/assets/icons/frontend/icon_python.png","level":20},
-                        {"text":"C++","img":"/portfolio/assets/icons/frontend/icon_c++.png","level":15},
-                        {"text":"QT","img":"/portfolio/assets/icons/frontend/icon_qt.png","level":20}
+                        {"text":"HTML","img":"./assets/icons/frontend/icon_html.png","level":26}, 
+                        {"text":"CSS / SASS","img":"./assets/icons/frontend/icon_sass.png","level":26}, 
+                        {"text":"JAVASCRIPT","img":"./assets/icons/frontend/icon_javascript.png","level":26}, 
+                        {"text":"REACT","img":"./assets/icons/frontend/icon_react.png","level":26}, 
+                        {"text":"REDUX","img":"./assets/icons/frontend/icon_redux.png","level":15}, 
+                        {"text":"THREE","img":"./assets/icons/frontend/icon_three.png","level":26}, 
+                        {"text":"GIT","img":"./assets/icons/frontend/icon_github.png","level":20},
+                        {"text":"NODE","img":"./assets/icons/frontend/icon_node.png","level":10},
+                        {"text":"PYTHON","img":"./assets/icons/frontend/icon_python.png","level":20},
+                        {"text":"C++","img":"./assets/icons/frontend/icon_c++.png","level":15},
+                        {"text":"QT","img":"./assets/icons/frontend/icon_qt.png","level":20}
                     ],
                     "projects":[
                         {"text":{"__html":"I worked during a year as <i><b>\"Creative Front-end\"</b></i> in <b>Webedia Spain</b> wich meant I designed and created programmatic ads and cool temporal dvertisement websites for films and movies. I primarily use Gatsby and three.js for the websites and jQuery or plain javascript for the programmatic ads."},"img":"/assets/logo_webedia.png"},
@@ -26,17 +26,17 @@
                     "window_title":"UX / UI",
                     "summary": {"__html": "The user experience and interface design are a very important part of my toolset now. I had the opportunity to start in this field through my work at <b>Wallbox Chargers</b> where I worked as a <i><b>\"Digital Product designer\"</b></i>.I think that it's an essential part of every digital product and in general to every digital experience,and it has definitely shaped my mind in every project where I get involved."},
                     "skills" :[
-                        {"text":"SKETCH","img":"/portfolio/assets/icons/ux/icon_sketch.png","level":26}, 
-                        {"text":"FLINTO","img":"/portfolio/assets/icons/ux/icon_flinto.png","level":26}, 
-                        {"text":"INVISION","img":"/portfolio/assets/icons/ux/icon_invision.png","level":15}, 
-                        {"text":"FIGMA","img":"/portfolio/assets/icons/ux/icon_figma.png","level":20}, 
-                        {"text":"ADOBE XD","img":"/portfolio/assets/icons/ux/icon_xd.png","level":15},
-                        {"text":"ADOBE PHOTOSHOP","img":"/portfolio/assets/icons/ux/icon_photoshop.png","level":26}, 
-                        {"text":"ADOBE ILLUSTRATOR","img":"/portfolio/assets/icons/ux/icon_illustrator.png","level":26}, 
-                        {"text":"WIREFRAMING","img":"/portfolio/assets/icons/ux/icon_wireframe.png","level":21}, 
-                        {"text":"STATISTICAL ANALYSIS","img":"/portfolio/assets/icons/ux/icon_analytics.png","level":18}, 
-                        {"text":"SURVEYING","img":"/portfolio/assets/icons/ux/icon_survey.png","level":15}, 
-                        {"text":"CONCEPT SKETCHING","img":"/portfolio/assets/icons/ux/icon_sketching.png","level":22} 
+                        {"text":"SKETCH","img":"./assets/icons/ux/icon_sketch.png","level":26}, 
+                        {"text":"FLINTO","img":"./assets/icons/ux/icon_flinto.png","level":26}, 
+                        {"text":"INVISION","img":"./assets/icons/ux/icon_invision.png","level":15}, 
+                        {"text":"FIGMA","img":"./assets/icons/ux/icon_figma.png","level":20}, 
+                        {"text":"ADOBE XD","img":"./assets/icons/ux/icon_xd.png","level":15},
+                        {"text":"ADOBE PHOTOSHOP","img":"./assets/icons/ux/icon_photoshop.png","level":26}, 
+                        {"text":"ADOBE ILLUSTRATOR","img":"./assets/icons/ux/icon_illustrator.png","level":26}, 
+                        {"text":"WIREFRAMING","img":"./assets/icons/ux/icon_wireframe.png","level":21}, 
+                        {"text":"STATISTICAL ANALYSIS","img":"./assets/icons/ux/icon_analytics.png","level":18}, 
+                        {"text":"SURVEYING","img":"./assets/icons/ux/icon_survey.png","level":15}, 
+                        {"text":"CONCEPT SKETCHING","img":"./assets/icons/ux/icon_sketching.png","level":22} 
                     ],
                     "projects":[
                         {"text":{"__html":"I entered in <b>Wallbox Chargers</b> as a <i><b>\"Digital Product designer\"</b></i> wich essentially meant I got to design the Wallbox App for Android / IOS and the Web Portal to manage the chargers. I also designed the charger's UI and part of the commercial website design. It was a very demanding job with lots of responsability, but I got to learn a lot about digital product design and UX / UI."},"img":"/assets/logo_wallbox.png"},
@@ -45,15 +45,15 @@
                     },
     "VISUAL ARTIST" : { 
                     "window_title":"Visual Artist",
-                    "summary": {"__html": "I've always liked <b>3D</b> and <b>VFX</b> in movies and advertisement, and more and more I try to make things in this field. I've learned a lot this last year, and I did some interesting projects like co-directing and VFX supervising for an zb>ESCAC short film</b>, making some <b>freelance 3D</b> works and <b>this website</b>. I definitely want to keep learning and working, and I would like to get involved in more projects of this kind."},
+                    "summary": {"__html": "I've always liked <b>3D</b> and <b>VFX</b> in movies and advertisement, and more and more I try to make things in this field. I've learned a lot this last year, and I did some interesting projects like co-directing and VFX supervising for an <b>ESCAC short film</b>, making some <b>freelance 3D</b> works and <b>this website</b>. I definitely want to keep learning and working, and I would like to get involved in more projects of this kind."},
                     "skills" :[
-                        {"text":"BLENDER","img":"/portfolio/assets/icons/visual/icon_blender.png","level":20}, 
-                        {"text":"ZBRUSH","img":"/portfolio/assets/icons/visual/icon_zbrush.png","level":10}, 
-                        {"text":"SUBSTANCE PAINTER","img":"/portfolio/assets/icons/visual/icon_substance.png","level":15}, 
-                        {"text":"THREE.JS","img":"/portfolio/assets/icons/visual/icon_three.png","level":26}, 
-                        {"text":"ADOBE AFTER EFFECTS","img":"/portfolio/assets/icons/visual/icon_after.png","level":15},
-                        {"text":"FILM MAKING","img":"/portfolio/assets/icons/visual/icon_filmaking.png","level":12},
-                        {"text":"3D / 2D ANIMATION","img":"/portfolio/assets/icons/visual/icon_animation.png","level":12}
+                        {"text":"BLENDER","img":"./assets/icons/visual/icon_blender.png","level":20}, 
+                        {"text":"ZBRUSH","img":"./assets/icons/visual/icon_zbrush.png","level":10}, 
+                        {"text":"SUBSTANCE PAINTER","img":"./assets/icons/visual/icon_substance.png","level":15}, 
+                        {"text":"THREE.JS","img":"./assets/icons/visual/icon_three.png","level":26}, 
+                        {"text":"ADOBE AFTER EFFECTS","img":"./assets/icons/visual/icon_after.png","level":15},
+                        {"text":"FILM MAKING","img":"./assets/icons/visual/icon_filmaking.png","level":12},
+                        {"text":"3D / 2D ANIMATION","img":"./assets/icons/visual/icon_animation.png","level":12}
                     ],
                     "projects":[
                         {"text":{"__html":"I got involved in an <b>ESCAC</b> short film called <i><b>\"AugReal\"</i></b> inspired in dark realistic sci-fi like <b>\"Black Mirror\"</i></b></i>, I co-writed and co-directed the short and I profited to add some cool VFX. I had helped in other projects before, but I really got in this one, a fascinating new experience I'll definitely try to repeat"},"img":"/assets/logo_escac.png"},
@@ -65,11 +65,11 @@
                     "window_title":"Graphic design",
                     "summary": {"__html": "Some years ago, while I was living in Paris, I made myself a graphic design portfolio and I started working as a <b>freelance graphic designer</b> with a collective of other freelancers called <i><b>\"The Ültreia Collective\"</b></i>. I did very different kinds of works from <b>branding</b>, to <b>Print</b> for <b>UGC Distribution</b>, and lots of other little works. The skills I learnt have helped me a lot throughout my career and are definitely the pilars of all my other stuff"},
                     "skills" :[
-                        {"text":"ADOBE PHOTOSHOP","img":"/portfolio/assets/icons/graphic/icon_photoshop.png","level":26}, 
-                        {"text":"ADOBE ILLUSTRATOR","img":"/portfolio/assets/icons/graphic/icon_illustrator.png","level":26}, 
-                        {"text":"ADOBE INDESIGN","img":"/portfolio/assets/icons/graphic/icon_indesign.png","level":10}, 
-                        {"text":"ILLUSTRATION","img":"/portfolio/assets/icons/graphic/icon_illustration.png","level":20}, 
-                        {"text":"PIXEL ART","img":"/portfolio/assets/icons/graphic/icon_pixel.png","level":20}
+                        {"text":"ADOBE PHOTOSHOP","img":"./assets/icons/graphic/icon_photoshop.png","level":26}, 
+                        {"text":"ADOBE ILLUSTRATOR","img":"./assets/icons/graphic/icon_illustrator.png","level":26}, 
+                        {"text":"ADOBE INDESIGN","img":"./assets/icons/graphic/icon_indesign.png","level":10}, 
+                        {"text":"ILLUSTRATION","img":"./assets/icons/graphic/icon_illustration.png","level":20}, 
+                        {"text":"PIXEL ART","img":"./assets/icons/graphic/icon_pixel.png","level":20}
                     ],
                     "projects":[
                         {"text":{"__html":"I had I a great opportunity working for a big client as <b>UGC</b> at the start of my freelance career. I did print works for them and I got the chance to make the french adaptation of the poster from the film <i><b>\"Sing Street\"</b></i>."},"img":"/assets/logo_ugc.png"},

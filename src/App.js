@@ -16,7 +16,6 @@ class App extends Component {
     this.state = {
       isMobile : /iPhone|iPad|iPod|Android/i.test(navigator.userAgent),
       d: 8.25,
-      mouse : {x:0,y:0},
       mouseOut:false,
       clicked:false,
       cutlineHovered:false,
@@ -25,6 +24,7 @@ class App extends Component {
       brainHover:"no_hover",
       brainClick:"no_click",
       brainHoverEvent:{},
+      headIsGlued:false,
       font:{},
       down:false,
       bloomLvl:0.1,
@@ -47,11 +47,15 @@ class App extends Component {
 
     //Get Window size
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
+
+    //Animation
+    this.animationIsFinished = this.animationIsFinished.bind(this)
   }
 
   componentDidMount() {
     this.updateWindowDimensions()
     window.addEventListener('resize', this.updateWindowDimensions)
+
   }
 
   updateWindowDimensions() {
@@ -72,6 +76,7 @@ class App extends Component {
     let array = this.state.windows
     array = array.filter((item, index) => index !== key)
     this.setState({windows:array}) 
+    this.setState({mouseOut:false})
   }
 
   newWindow(type){
@@ -80,11 +85,21 @@ class App extends Component {
     this.setState({window_active:this.state.windows.length - 1}) 
     this.setState({windows:array}) 
   }
-
+  
+  animationIsFinished(){
+    console.log(this.state.headIsGlued)
+    if(this.state.headIsGlued){
+      this.setState({headIsGlued:false})
+      this.setState({brainMode:false})
+    } else if(this.state.headIsCut){
+      this.setState({headIsCut:false})
+      this.setState({brainMode:true})
+    }
+  }
   render() {
-
     return (
       <div className="App">
+          {this.state.brainMode ? <div className="back" onClick={e => this.setState({headIsGlued:true, brainMode:false})} style={{cursor: "url(./assets/window_cursors/cursor_pointer.cur), pointer"}}>&larr; Back to the head</div> : ""}
           {this.state.isMobile && !this.state.brainMode? <div className={this.state.headIsCut ? "discover_button fade" :"discover_button"} onClick={e => this.setState({headIsCut:true})}>DISCOVER WHAT'S INSIDE</div> : ""}
           {this.state.isMobile && this.state.brainMode? 
           <div className="mobile">        
@@ -105,60 +120,57 @@ class App extends Component {
           </div>}
           {!this.state.isMobile ? 
           <div className="links">
-            <a href={"https://www.linkedin.com/in/julen-aranguren-a28a8611a"} target="_blank" className="links_linkedIn" style={{backgroundImage: "url(./assets/logo_linkedIn.png)",cursor: "url(./portfolio/assets/window_cursors/cursor_pointer.cur), pointer"}}></a>
-            <div className="links_mailTo" onClick={e=> this.newWindow("contact")} style={{backgroundImage: "url(./assets/logo_mailto.png)", cursor: "url(./portfolio/assets/window_cursors/cursor_pointer.cur), pointer"}}></div>
+            <a href={"https://www.linkedin.com/in/julen-aranguren-a28a8611a"} target="_blank" className="links_linkedIn" style={{backgroundImage: "url(./assets/logo_linkedIn.png)",cursor: "url(./assets/window_cursors/cursor_pointer.cur), pointer"}}></a>
+            <div className="links_mailTo" onClick={e=> this.newWindow("contact")} style={{backgroundImage: "url(./assets/logo_mailto.png)", cursor: "url(./assets/window_cursors/cursor_pointer.cur), pointer"}}></div>
           </div> 
           : 
           <div className="mobile_links">
-            <a href={"https://www.linkedin.com/in/julen-aranguren-a28a8611a"} target="_blank" className="mobile_links_link" style={{backgroundImage: "url(/portfolio/assets/logo_linkedIn.png)",backgroundSize:"contain"}}></a>
-            <div className="mobile_links_link" onClick={e=> this.newWindow("contact")} style={{backgroundImage: "url(/portfolio/assets/logo_mailto.png)",backgroundSize:"contain"}}></div>
+            <a href={"https://www.linkedin.com/in/julen-aranguren-a28a8611a"} target="_blank" className="mobile_links_link" style={{backgroundImage: "url(./assets/logo_linkedIn.png)",backgroundSize:"contain"}}></a>
+            <div className="mobile_links_link" onClick={e=> this.newWindow("contact")} style={{backgroundImage: "url(./assets/logo_mailto.png)",backgroundSize:"contain"}}></div>
           </div> 
           }
-          {this.state.mouseOut || this.state.isMobile ? "" : <Cursor mouse={this.state.mouse} clicked={this.state.clicked} scissorCursor={this.state.cutlineHovered} brainHover={this.state.brainHover} brainMode={this.state.brainMode}/>}
-          {this.state.width < 480 ? "" : this.state.windows.length > 0 ? <div className="closeAll" onClick={e => this.setState({windows:[]}) } style={{cursor: "url(./portfolio/assets/window_cursors/cursor_pointer.cur), pointer"}}>Close All</div> : ""}
+          {this.state.mouseOut || this.state.isMobile ? "" : <Cursor clicked={this.state.clicked} scissorCursor={this.state.cutlineHovered} brainHover={this.state.brainHover} brainMode={this.state.brainMode}/>}
+          {this.state.width < 480 ? "" : this.state.windows.length > 0 ? <div className="closeAll" onClick={e => this.setState({windows:[]}) } style={{cursor: "url(./assets/window_cursors/cursor_pointer.cur), pointer"}}>Close All</div> : ""}
           {this.state.windows.length > 0 ? this.state.windows.map((type, index) => <Window isMobile={this.state.width < 480 ? true : false} key={index} type={type} number={index} closeWindow={this.closeWindow} setActive={number => this.setState({window_active:number})} isActive={this.state.window_active} newWindow={this.newWindow}/>) : ""}
             <Canvas shadowMap 
             pixelRatio={window.devicePixelRatio}
             camera={{fov: 40,position: [0, 0, 7]}}
-            onMouseMove={e => this.setState({mouse: {x:e.clientX,y:e.clientY}})} 
             onMouseLeave={e => this.setState({mouseOut:true})} 
             onMouseEnter={e => {this.setState({mouseOut:false});this.setState({clicked:true})}} 
             onMouseDown={e => this.setState({clicked:true, down:true})} 
             onMouseUp={e => this.setState({clicked:false, down:false})}>
-            >
               <fog attach="fog" args={[0xdfdfdf, 35, 65]} />
               <hemisphereLight skyColor={"black"} groundColor={0xffffff} intensity={0.8} position={[0, 50, 0]} />
               <Suspense fallback={<Loading scale={this.state.width < 420 ? "small" : "normal"} />}>
                   {this.state.isMobile ?
                     <Head_mobile
-                    mouse={this.state.mouse} 
                     position={[0,0,0]} 
                     scale={this.state.width < 420 ? [1.25, 1.25, 1.25] : this.state.width < 768 ? [1.5,1.5,1.5] : [2,2,2]} 
                     brainMode={this.state.brainMode}
                     brainHover={this.state.selectedBrainPart[this.state.navSelectedItem]}
                     isHeadCut={this.state.headIsCut}
-                    setBrainMode={e => this.setState({brainMode:true})}
+                    isHeadGlued={this.state.headIsGlued}
+                    animationFinish = {this.animationIsFinished}
                     /> 
-                  : 
-                  <Head 
-                  mouse={this.state.mouse} 
-                  position={this.state.width < 768 ? [0,0,0] : [0,-0.25,0]} 
-                  scale={this.state.width < 420 ? [1.25, 1.25, 1.25] : this.state.width < 768 ? [1.5,1.5,1.5] : [2,2,2]} 
-                  setCutlineHovered={this.setCutlineHovered} 
-                  cutlineHovered={this.state.cutlineHovered} 
-                  setCutHead={e => this.setState({headIsCut:true})} 
-                  isHeadCut={this.state.headIsCut}
-                  setBrainMode={e => this.setState({brainMode:true})}
-                  brainMode={this.state.brainMode}
-                  setBrainHover={this.setBrainHover}
-                  brainHover={this.state.brainHover}
-                  brainHoverEvent={this.state.brainHoverEvent}
-                  newWindow={this.newWindow}
-                   /> 
-
+                    : 
+                    <Head
+                    position={this.state.width < 768 ? [0,0,0] : [0,-0.1,0]} 
+                    scale={this.state.width < 420 ? [1, 1, 1] : this.state.width < 768 ? [1.25,1.25,1.25] : [1.35,1.35,1.35]} 
+                    setCutlineHovered={this.setCutlineHovered} 
+                    cutlineHovered={this.state.cutlineHovered} 
+                    setCutHead={e => this.setState({headIsCut:true})} 
+                    isHeadCut={this.state.headIsCut}
+                    brainMode={this.state.brainMode}
+                    setBrainHover={this.setBrainHover}
+                    brainHover={this.state.brainHover}
+                    brainHoverEvent={this.state.brainHoverEvent}
+                    isHeadGlued={this.state.headIsGlued}
+                    newWindow={this.newWindow}
+                    animationFinish = {this.animationIsFinished}
+                    /> 
                   }
               </Suspense>
-              <Particles count={this.state.isMobile ? 5000 : 10000} mouse={this.state.mouse} />
+              <Particles count={this.state.isMobile ? 5000 : 10000}/>
             </Canvas>        
       </div>
     );
